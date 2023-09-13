@@ -1,0 +1,3 @@
+moduleName=grails-htmx-module
+moduleVersion=1.0
+extensionClasses=org.rainboyan.plugins.htmx.HttpServletRequestExtension,org.rainboyan.plugins.htmx.HttpServletResponseExtension
