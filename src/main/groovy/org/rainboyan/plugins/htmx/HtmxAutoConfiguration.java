@@ -17,19 +17,30 @@ package org.rainboyan.plugins.htmx;
 
 import javax.servlet.DispatcherType;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.filter.OrderedFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+/**
+ * {@link EnableAutoConfiguration Auto-configuration} for Htmx Plugin.
+ *
+ * @author Michael Yan
+ * @since 1.0
+ */
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@Configuration(proxyBeanMethods = false)
 public class HtmxAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingFilterBean
     public FilterRegistrationBean<HtmxRequestFilter> htmxFilter() {
         HtmxRequestFilter filter = new HtmxRequestFilter();
         FilterRegistrationBean<HtmxRequestFilter> registration = new FilterRegistrationBean<>(filter);
-        registration.setDispatcherTypes(DispatcherType.REQUEST);
+        registration.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ASYNC);
         registration.setOrder(OrderedFilter.REQUEST_WRAPPER_FILTER_MAX_ORDER + 100);
         return registration;
     }
