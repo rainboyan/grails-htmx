@@ -19,6 +19,12 @@ import javax.servlet.http.HttpServletRequest
 
 import groovy.transform.CompileStatic
 
+/**
+ * Htmx Request Headers {link https://htmx.org/reference/#request_headers}
+ *
+ * @author Michael Yan
+ * @since 1.0
+ */
 @CompileStatic
 class HtmxRequest {
 
@@ -31,46 +37,79 @@ class HtmxRequest {
     public static final String HX_TRIGGER = 'HX-Trigger'
     public static final String HX_TRIGGER_NAME = 'HX-Trigger-Name'
 
-    private HttpServletRequest request
+    private final HttpServletRequest request
 
     HtmxRequest(HttpServletRequest request) {
         this.request = request
     }
 
+    /**
+     * Indicates that the request is via an element using hx-boost
+     */
     boolean isBoosted() {
-        getHeaderValue('HX-Boosted') == 'true'
+        getHeaderValue(HX_BOOSTED) == 'true'
     }
 
+    /**
+     * The current URL of the browser
+     */
     String getCurrentUrl() {
-        getHeaderValue('HX-Current-URL')
+        getHeaderValue(HX_CURRENT_URL)
     }
 
+    /**
+     * True if the request is for history restoration after a miss in the local history cache
+     */
     boolean isHistoryRestoreRequest() {
-        getHeaderValue('HX-History-Restore-Request')
+        getHeaderValue(HX_HISTORY_RESTORE_REQUEST)
     }
 
+    /**
+     * The user response to an hx-prompt
+     */
     String getPrompt() {
-        getHeaderValue('HX-Prompt')
+        getHeaderValue(HX_PROMPT)
     }
 
+    /**
+     * Always true
+     */
+    boolean getRequest() {
+        getHeaderValue(HX_REQUEST) == 'true'
+    }
+
+    /**
+     * The id of the target element if it exists
+     */
     String getTarget() {
-        getHeaderValue('HX-Target')
+        getHeaderValue(HX_TARGET)
     }
 
+    /**
+     * The id of the triggered element if it exists
+     */
     String getTrigger() {
-        getHeaderValue('HX-Trigger')
+        getHeaderValue(HX_TRIGGER)
     }
 
+    /**
+     * The name of the triggered element if it exists
+     */
     String getTriggerName() {
-        getHeaderValue('HX-Trigger-Name')
+        getHeaderValue(HX_TRIGGER_NAME)
     }
 
+    /**
+     * Get header value from request
+     * @param The name of header
+     * @return value
+     */
     String getHeaderValue(String name) {
         this.request.getHeader(name)
     }
 
     boolean asBoolean() {
-        getHeaderValue('HX-Request') == 'true'
+        getRequest()
     }
 
 }
