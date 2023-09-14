@@ -19,7 +19,7 @@ import grails.plugins.Plugin
 import grails.util.GrailsUtil
 
 /**
- * Htmx Plugin
+ * Htmx Grails Plugin
  *
  * @author Michael Yan
  * @since 1.0.0
@@ -30,10 +30,21 @@ class HtmxGrailsPlugin extends Plugin {
     def dependsOn = [controllers: grailsVersion]
     def observe = ['controllers']
 
-    Closure doWithSpring() {
-        { ->
+    // URL to the plugin's documentation
+    def documentation = "https://github.com/rainboyan/grails-htmx"
 
-        }
-    }
+    // Extra (optional) plugin metadata
+
+    // License: one of 'APACHE', 'GPL2', 'GPL3'
+    def license = "APACHE"
+
+    // Any additional developers beyond the author specified above.
+    def developers = [ [id: "rainboyan", name: "Michael Yan", email: "rain@rainboyan.com" ]]
+
+    // Location of the plugin's issue tracker.
+    def issueManagement = [ system: "GitHub", url: "https://github.com/rainboyan/grails-htmx/issues" ]
+
+    // Online location of the plugin's browseable source code.
+    def scm = [ url: "https://github.com/rainboyan/grails-htmx" ]
 
 }
