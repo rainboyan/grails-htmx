@@ -25,13 +25,23 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import org.grails.web.util.GrailsApplicationAttributes;
 
+/**
+ * {@link OncePerRequestFilter} to check current request whether from htmx or not,
+ * and will set attribute content and response format.
+ *
+ * @author Michael Yan
+ * @since 1.0
+ */
 public class HtmxRequestFilter extends OncePerRequestFilter {
 
+    public static final String HX_FORMAT = "htmx";
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (Boolean.parseBoolean(request.getHeader("HX-Request"))) {
-            request.setAttribute(GrailsApplicationAttributes.CONTENT_FORMAT, "htmx");
-            request.setAttribute(GrailsApplicationAttributes.RESPONSE_FORMAT, "htmx");
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        if (Boolean.parseBoolean(request.getHeader(HtmxRequest.HX_REQUEST))) {
+            request.setAttribute(GrailsApplicationAttributes.CONTENT_FORMAT, HX_FORMAT);
+            request.setAttribute(GrailsApplicationAttributes.RESPONSE_FORMAT, HX_FORMAT);
         }
         filterChain.doFilter(request, response);
     }
