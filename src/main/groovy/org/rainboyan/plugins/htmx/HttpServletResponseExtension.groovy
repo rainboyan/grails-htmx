@@ -15,20 +15,12 @@
  */
 package org.rainboyan.plugins.htmx
 
-import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 import groovy.transform.CompileStatic
 
-import grails.web.http.HttpHeaders
-import grails.web.mime.MimeType
-
-import org.grails.web.servlet.mvc.GrailsWebRequest
-import org.grails.web.util.GrailsApplicationAttributes
-
 /**
- *
- * Extends the {@link HttpServletResponse} object with new methods for handling HTMx Response
+ * Extends the {@link HttpServletResponse} object with new methods for handling htmx Response
  *
  * @author Michael Yan
  * @since 1.0.0

@@ -19,14 +19,10 @@ import javax.servlet.http.HttpServletRequest
 
 import groovy.transform.CompileStatic
 
-import grails.web.mime.MimeType
-
 /**
- * An extension that adds methods to the {@link HttpServletRequest} object for HTMX Request
- * {link https://htmx.org/reference/#headers}
+ * Extends the {@link HttpServletRequest} object with new methods for handling htmx Request
  *
  * @author Michael Yan
- *
  * @since 1.0
  */
 @CompileStatic
