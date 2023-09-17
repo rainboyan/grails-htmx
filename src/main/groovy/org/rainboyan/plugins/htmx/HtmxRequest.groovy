@@ -47,7 +47,7 @@ class HtmxRequest {
      * Indicates that the request is via an element using hx-boost
      */
     boolean isBoosted() {
-        getHeaderValue(HX_BOOSTED) == 'true'
+        Boolean.parseBoolean(getHeaderValue(HX_BOOSTED))
     }
 
     /**
@@ -75,7 +75,7 @@ class HtmxRequest {
      * Always true
      */
     boolean getRequest() {
-        getHeaderValue(HX_REQUEST) == 'true'
+        Boolean.parseBoolean(getHeaderValue(HX_REQUEST))
     }
 
     /**
