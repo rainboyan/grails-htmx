@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import grails.web.http.HttpHeaders;
+import grails.web.mime.MimeType;
 import org.grails.web.util.GrailsApplicationAttributes;
 
 /**
@@ -37,12 +39,18 @@ public class HtmxRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        if (Boolean.parseBoolean(request.getHeader(HtmxRequest.HX_REQUEST))) {
-            request.setAttribute(GrailsApplicationAttributes.CONTENT_FORMAT, HtmxMimeType.HTMX_FORMAT);
-            request.setAttribute(GrailsApplicationAttributes.RESPONSE_FORMAT, HtmxMimeType.HTMX_FORMAT);
-            request.setAttribute(GrailsApplicationAttributes.RESPONSE_MIME_TYPE, HtmxMimeType.HTMX);
-        }
+
+        request.setAttribute(GrailsApplicationAttributes.CONTENT_FORMAT, HtmxMimeType.HTMX_FORMAT);
+        request.setAttribute(GrailsApplicationAttributes.RESPONSE_FORMAT, HtmxMimeType.HTMX_FORMAT);
+        request.setAttribute(GrailsApplicationAttributes.RESPONSE_MIME_TYPE, HtmxMimeType.HTMX);
+
         filterChain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return !(MimeType.ALL.getName().equals(request.getHeader(HttpHeaders.ACCEPT))
+                && Boolean.parseBoolean(request.getHeader(HtmxRequest.HX_REQUEST)));
     }
 
 }
