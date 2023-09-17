@@ -139,7 +139,7 @@ class HtmxResponse {
     }
 
     void setHeaderValue(String name, Object value) {
-        this.response.setHeader(name, String.valueOf(value))
+        this.response.setHeader(name, (value == null) ? "" : value.toString())
     }
 
 }
