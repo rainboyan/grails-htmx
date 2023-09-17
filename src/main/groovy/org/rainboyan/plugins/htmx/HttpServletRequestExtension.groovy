@@ -32,4 +32,8 @@ class HttpServletRequestExtension {
         new HtmxRequest(request)
     }
 
+    static boolean isHtmx(HttpServletRequest request) {
+        Boolean.parseBoolean(request.getHeader(HtmxRequest.HX_REQUEST))
+    }
+
 }
