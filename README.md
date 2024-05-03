@@ -1,3 +1,8 @@
+> [!Announcement]
+> In order to support both Grails and Grace, reduce maintenance costs, and focus on developing new features, this repository is no longer being updated!
+>
+> Please use [grace-plugins/grace-htmx](https://github.com/grace-plugins/grace-htmx), it supports both Grails 3+ and Grace 2022!
+
 # Grails with Htmx
 
 Grails Plugin for using Grails with htmx.
